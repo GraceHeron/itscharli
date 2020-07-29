@@ -31,7 +31,7 @@ I did my main project for MXB262 on Grimes. Can't wait for their break up album 
 
 ```{r setup2, include=FALSE}
 # knitr::opts_chunk$set(echo = FALSE)
-# knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
+knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
 library(spotifyr)
 library(ggjoy)
 library(tidyverse)
@@ -53,7 +53,7 @@ library(RColorBrewer)
 
 ### Visualisation 1:
 
-```{r }
+```{r echo=FALSE, message=FALSE}
 ## Read in grimes discography (singles, demos, albums, collaborations)
 grimes <- readRDS(file = "data/grimes_all.rds")
 
@@ -121,7 +121,7 @@ ggplot(grimes, aes(x = album_release_year,
 
 ### Visualisation 2:
 
-```{r vis1}
+```{r vis1, echo=FALSE, message=FALSE}
 ## Read in grimes data (albums only)
 grimes <- readRDS(file = "data/grimes.rds")
 
@@ -173,7 +173,7 @@ ggplot(grimes_scaled,
 
 ### Visualisation 3:
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE}
 ## Read in all of these ladies
 grimes <- readRDS(file = "data/grimes.rds") %>% 
   dplyr::select(-album_images, -artists, -available_markets) %>% 
