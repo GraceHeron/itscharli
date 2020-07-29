@@ -1,29 +1,59 @@
-Spotify Visualisation
-================
-Grace Heron
-29/07/2020
+---
+title: "Spotify Visualisation"
+author: "Grace Heron"
+date: "29/07/2020"
+output: 
+    github_document:
+        html_preview: false
+---
 
-Using the ‘spotifyr’\[<https://github.com/charlie86/spotifyr>\]. Is a
-neat R wrapper for Spotify’s Web API
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Using the 'spotifyr'[https://github.com/charlie86/spotifyr]. Is a neat R wrapper for Spotify's Web API 
 
 ## Charli XCX Visualisation
 
-I went/still going through a charli xcx phase.
+I went/still going through a charli xcx phase. 
+
+
 
 ## Grimes Visualisation
 
-I did my main project for MXB262 on Grimes. Can’t wait for their break
-up album (bye bye elon rat).
+I did my main project for MXB262 on Grimes. Can't wait for their break up album (bye bye elon rat).
 
 ### Why?
 
-  - I have listened to most of Grimes’s discography
-  - I want to justify my opinions
-  - Grime’s is known for ‘edgy’ music but is it really?
+- I have listened to most of Grimes's discography 
+- I want to justify my opinions
+- Grime's is known for 'edgy' music but is it really?
+
+```{r setup2, include=FALSE}
+# knitr::opts_chunk$set(echo = FALSE)
+# knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
+library(spotifyr)
+library(ggjoy)
+library(tidyverse)
+library(igraph)
+library(intergraph)
+library(RColorBrewer)
+
+## How to get data:
+## Get spotify client from: 
+##  https://developer.spotify.com/documentation/general/guides/authorization-guide/
+## Sys.setenv(SPOTIFY_CLIENT_ID = 'xxxxxx') # redacted - dont wanna get hacked
+## Sys.setenv(SPOTIFY_CLIENT_SECRET = 'xxxxxx') # redacted - dont wanna get hacked
+## access_token <- get_spotify_access_token()
+## music <- get_artist_audio_features('Grimes') ## Repeated for all artists
+## saveRDS(music, file = "grimes.rds")
+
+```
+
 
 ### Visualisation 1:
 
-``` r
+```{r }
 ## Read in grimes discography (singles, demos, albums, collaborations)
 grimes <- readRDS(file = "data/grimes_all.rds")
 
@@ -49,11 +79,7 @@ fix_tracknames <- function(df){
 
 ## Remove duplicated entries (spotify API not perfect)
 grimes <- fix_tracknames(grimes)
-```
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 ## Need to filter out songs from other artists that are on the same album grimes' feature is on
 distinct_album_names <- c("Miss Anthropocene","Art Angels","Visions","Halfaxa",
                           "Geidi Primes","Miss Anthropocene (V1)","Phone Sex", 
@@ -93,11 +119,9 @@ ggplot(grimes, aes(x = album_release_year,
           subtitle = "Includes albums, singles and collaborations")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
-
 ### Visualisation 2:
 
-``` r
+```{r vis1}
 ## Read in grimes data (albums only)
 grimes <- readRDS(file = "data/grimes.rds")
 
@@ -106,11 +130,7 @@ grimes <- filter(grimes, album_name != "Miss Anthropocene (V1)")
 
 ## Remove duplicated entries (due to bad data entry - capitalisation)
 grimes <- fix_tracknames(grimes)
-```
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 ## Ensure albums are ordered chronologically 
 grimes$album_name <- factor(
   grimes$album_name, 
@@ -151,66 +171,35 @@ ggplot(grimes_scaled,
     subtitle = "Song attributes: acousticness, danceability, energy, instrumentalness, liveness, valence")
 ```
 
-![](README_files/figure-gfm/vis1-1.png)<!-- -->
-
 ### Visualisation 3:
 
-``` r
+```{r echo=FALSE}
 ## Read in all of these ladies
 grimes <- readRDS(file = "data/grimes.rds") %>% 
   dplyr::select(-album_images, -artists, -available_markets) %>% 
   filter(album_name == "Miss Anthropocene") %>%
   fix_tracknames()
-```
-
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 ariana <- readRDS(file = "data/ariana.rds") %>% 
   dplyr::select(-album_images, -artists, -available_markets) %>% 
   filter(album_name == "Sweetener") %>%
   fix_tracknames()
-```
-
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 billie <- readRDS(file = "data/billie.rds") %>% 
   dplyr::select(-album_images, -artists, -available_markets) %>% 
   filter(album_name == "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?") %>%
   fix_tracknames()
-```
-
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 taylor <- readRDS(file = "data/taylor.rds") %>% 
   dplyr::select(-album_images, -artists, -available_markets) %>% 
   filter(album_name == "Lover") %>%
   fix_tracknames()
-```
-
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 halsey <- readRDS(file = "data/halsey.rds") %>% 
   dplyr::select(-album_images, -artists, -available_markets) %>% 
   filter(album_name == "Manic") %>%
   fix_tracknames()
-```
-
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 cardi <- readRDS(file = "data/cardi.rds") %>% 
   dplyr::select(-album_images, -artists, -available_markets) %>% 
   filter(album_name == "Invasion of Privacy") %>%
   fix_tracknames()
-```
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
-
-``` r
 ## Combine into 1 data frame
 femalepop <- bind_rows(grimes, ariana, billie, taylor, halsey, cardi)
 
@@ -270,4 +259,4 @@ legend(
   pch=19,cex=1,bty="n")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+

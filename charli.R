@@ -31,3 +31,17 @@ charli %>%
 ggplot(charli, aes(x = valence, y = album_name)) + 
   geom_joy() + 
   theme_joy() 
+
+
+
+charli %>% 
+  reshape2::melt(measure.var = cont_var) %>% 
+  ggplot(aes(x = variable, y = value, group = track_name)) +
+  geom_polygon(show.legend = F, fill = NA, colour = "hotpink") +
+  coord_polar() +
+  theme_minimal() +
+  theme(axis.text.y = element_blank()) +
+  labs(x = "", y = "") +
+  facet_wrap(vars(album_name))
+
+
