@@ -9,16 +9,19 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
+# knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
 library(spotifyr)
 library(ggridges)
 library(tidyverse)
 library(knitr)
 library(ggcute)
+library(igraph)
+library(intergraph)
+library(RColorBrewer)
 windowsFonts("Courier" = windowsFont("Courier New"))
 ```
 
-Using the 'spotifyr'[https://github.com/charlie86/spotifyr]. Is a neat R wrapper for Spotify's Web API 
+Using the 'spotifyr'[https://github.com/charlie86/spotifyr]. Is a neat R wrapper for Spotify's Web API. This github repo is a collation of 'spotifyr' things I have done :) Not really anything big/impressive just some cool plots. 
 
 ## Charli XCX Visualisation
 
@@ -42,7 +45,7 @@ ggplot(charli, aes(x = valence, y = album_name, fill = album_name)) +
   labs(y = "Album Name")
 ```
 
-Cutesy polar plots of the albums. It's kind of a fingerprint of each album. Pop 2, Charli and how i'm feeling now are more similar to each other than Charli's first three albums. 
+Cutesy polar plots of the albums. It's kind of a fingerprint of each album. 'Pop 2', 'Charli' and 'how i'm feeling now' are more similar to each other than Charli's first three albums. Growth? Stagnation? Found her niche? Either way I will eat it up.
 
 
 ```{r echo=FALSE, message=FALSE}
@@ -69,28 +72,6 @@ I did my main project for MXB262 on Grimes.
 - I have listened to all of Grimes's discography 
 - I want to justify my opinions
 - Grime's is known for 'edgy' music but is it really?
-
-```{r setup2, include=FALSE}
-# knitr::opts_chunk$set(echo = FALSE)
-
-library(spotifyr)
-library(ggridges)
-library(tidyverse)
-library(igraph)
-library(intergraph)
-library(RColorBrewer)
-
-## How to get data:
-## Get spotify client from: 
-##  https://developer.spotify.com/documentation/general/guides/authorization-guide/
-## Sys.setenv(SPOTIFY_CLIENT_ID = 'xxxxxx') # redacted - dont wanna get hacked
-## Sys.setenv(SPOTIFY_CLIENT_SECRET = 'xxxxxx') # redacted - dont wanna get hacked
-## access_token <- get_spotify_access_token()
-## music <- get_artist_audio_features('Grimes') ## Repeated for all artists
-## saveRDS(music, file = "grimes.rds")
-
-```
-
 
 ### Visualisation 1:
 

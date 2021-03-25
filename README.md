@@ -4,7 +4,9 @@ Grace Heron
 29/07/2020
 
 Using the ‘spotifyr’\[<https://github.com/charlie86/spotifyr>\]. Is a
-neat R wrapper for Spotify’s Web API
+neat R wrapper for Spotify’s Web API. This github repo is a collation of
+‘spotifyr’ things I have done :) Not really anything big/impressive just
+some cool plots.
 
 ## Charli XCX Visualisation
 
@@ -16,8 +18,9 @@ happy/sad.
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 Cutesy polar plots of the albums. It’s kind of a fingerprint of each
-album. Pop 2, Charli and how i’m feeling now are more similar to each
-other than Charli’s first three albums.
+album. ‘Pop 2’, ‘Charli’ and ‘how i’m feeling now’ are more similar to
+each other than Charli’s first three albums. Growth? Stagnation? Found
+her niche? Either way I will eat it up.
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
