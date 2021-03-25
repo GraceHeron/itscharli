@@ -8,8 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-# knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
+knitr::opts_chunk$set(echo = TRUE,fig.width = 8, fig.height = 5)
 library(spotifyr)
 library(ggridges)
 library(tidyverse)
