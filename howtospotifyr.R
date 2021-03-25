@@ -1,6 +1,7 @@
 ## https://github.com/charlie86/spotifyr
 library(spotifyr)
-library(ggjoy)
+# library(ggjoy) ## deprecated
+library(ggridges)
 library(tidyverse)
 
 ## Get spotify client from: 
